@@ -1,0 +1,122 @@
+jacinta@ubuntu:~$ sudo mysql -u root -p
+[sudo] password for jacinta: 
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 4
+Server version: 5.7.24-0ubuntu0.18.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| hello              |
+| kitty              |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+6 rows in set (0.56 sec)
+
+mysql> use kitty;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+
+mysql> create table collect(id int primary key not null,user varchar(45),collection varchar(45));
+Query OK, 0 rows affected (0.39 sec)
+
+mysql> select * from collect;
+Empty set (0.02 sec)
+
+mysql> desc collect;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| id         | int(11)     | NO   | PRI | NULL    |       |
+| user       | varchar(45) | YES  |     | NULL    |       |
+| collection | varchar(45) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (0.15 sec)
+
+
+mysql> insert into collect (id,user,collection) values (1,"aa","foods"), (2,"bb","shoes"), (3,"cc","clothes"), (4,"dd","pants"),(5,"44","album");
+Query OK, 5 rows affected (0.31 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> desc collect;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| id         | int(11)     | NO   | PRI | NULL    |       |
+| user       | varchar(45) | YES  |     | NULL    |       |
+| collection | varchar(45) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (1.17 sec)
+
+
+mysql> select * from collect;
++----+------+------------+
+| id | user | collection |
++----+------+------------+
+|  1 | aa   | foods      |
+|  2 | bb   | shoes      |
+|  3 | cc   | clothes    |
+|  4 | dd   | pants      |
+|  5 | 44   | album      |
++----+------+------------+
+5 rows in set (0.00 sec)
+
+mysql> insert into collect (id,user,collection) values (6,"ee","foods");
+Query OK, 1 row affected (0.82 sec)
+
+mysql> select * from collect;
++----+------+------------+
+| id | user | collection |
++----+------+------------+
+|  1 | aa   | foods      |
+|  2 | bb   | shoes      |
+|  3 | cc   | clothes    |
+|  4 | dd   | pants      |
+|  5 | 44   | album      |
+|  6 | ee   | foods      |
++----+------+------------+
+6 rows in set (0.12 sec)
+
+
+mysql> delete from collect where id=3;
+Query OK, 1 row affected (0.22 sec)
+
+
+mysql> select * from collect where collection="album";
++----+------+------------+
+| id | user | collection |
++----+------+------------+
+|  5 | 44   | album      |
++----+------+------------+
+1 row in set (0.03 sec)
+
+
+mysql> alter table collect modify id int unique auto_increment; 
+Query OK, 5 rows affected (1.30 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> desc collect;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| id         | int(11)     | NO   | PRI | NULL    | auto_increment |
+| user       | varchar(45) | YES  |     | NULL    |                |
+| collection | varchar(45) | YES  |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+3 rows in set (0.07 sec)
+
