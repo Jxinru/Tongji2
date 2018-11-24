@@ -1,0 +1,68 @@
+mysql> create table movie(id int primary key not null auto_increment,
+    -> name varchar(45),
+    -> year varchar(45),
+    -> director varchar(45),
+    -> grade varchar(45));
+Query OK, 0 rows affected (0.19 sec)
+
+mysql> insert into movie (id,name,year,director,grade) values 
+    -> (1,"harry potter1","2001","chris columbus","8.8");
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into movie (name,year,director,grade) values 
+    -> ("harry porret7","2010","david yates","8.0"),
+    -> ("walk with god1","2017","kim yonghwa","7.7"),
+    -> ("witch","2018","park hoonjung","7.1")
+    -> ;
+Query OK, 3 rows affected (0.19 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from movie;
++----+----------------+------+----------------+-------+
+| id | name           | year | director       | grade |
++----+----------------+------+----------------+-------+
+|  1 | harry potter1  | 2001 | chris columbus | 8.8   |
+|  2 | harry porret7  | 2010 | david yates    | 8.0   |
+|  3 | walk with god1 | 2017 | kim yonghwa    | 7.7   |
+|  4 | witch          | 2018 | park hoonjung  | 7.1   |
++----+----------------+------+----------------+-------+
+4 rows in set (0.06 sec)
+
+mysql> select * from movie where name like "%harry potter";
+Empty set (0.06 sec)
+
+mysql> select * from movie where name like "%harry potter%";
++----+---------------+------+----------------+-------+
+| id | name          | year | director       | grade |
++----+---------------+------+----------------+-------+
+|  1 | harry potter1 | 2001 | chris columbus | 8.8   |
++----+---------------+------+----------------+-------+
+1 row in set (0.00 sec)
+
+mysql> select * from movie where director like "%kim yonghwa%";
++----+----------------+------+-------------+-------+
+| id | name           | year | director    | grade |
++----+----------------+------+-------------+-------+
+|  3 | walk with god1 | 2017 | kim yonghwa | 7.7   |
++----+----------------+------+-------------+-------+
+1 row in set (0.00 sec)
+
+mysql> select * from movie where year=2018;
++----+-------+------+---------------+-------+
+| id | name  | year | director      | grade |
++----+-------+------+---------------+-------+
+|  4 | witch | 2018 | park hoonjung | 7.1   |
++----+-------+------+---------------+-------+
+1 row in set (0.71 sec)
+
+mysql> select * from movie where grade>7.5;
++----+----------------+------+----------------+-------+
+| id | name           | year | director       | grade |
++----+----------------+------+----------------+-------+
+|  1 | harry potter1  | 2001 | chris columbus | 8.8   |
+|  2 | harry porret7  | 2010 | david yates    | 8.0   |
+|  3 | walk with god1 | 2017 | kim yonghwa    | 7.7   |
++----+----------------+------+----------------+-------+
+3 rows in set (0.75 sec)
+
+
