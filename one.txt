@@ -1,0 +1,42 @@
+#1.一个五角数被定义为n(3n-1)/2,其中n=1、2......。
+def getPentagonalNumber(n):
+    c = int(n* (3 * n - 1) / 2)
+    print(c,end='\t')
+    if n %10 == 0:
+        print()
+        
+for i in range(1,101):
+    getPentagonalNumber(i)
+
+
+#2.
+def sumDigits(n):
+#str将括号中的内容强制转换为字符串
+    str_ = str(n)
+    int_ = 0
+    for i in str_:
+        int_ += int(i)
+    print(int_)
+sumDigits(752)
+
+
+#3
+def displaySortedNumbers(num1,num2,num3):
+    res = [num1,num2,num3]
+    res.sort()
+    print(res)
+
+displaySortedNumbers(8,5,2)
+
+#4
+def futureInvestmentValue(investmentAmount,monthlyInterestRate,years):
+        years = 0
+        for i in range(0,100):
+            years = i + 1
+            futurevalue = investmentAmount+investmentAmount*monthlyInterestRate
+        print(years_,futurevalue)
+            investmentAmount = futurevalue
+futureInvestmentValue(4444,0.4,44)
+print(years_,futurevalue)
+
+
